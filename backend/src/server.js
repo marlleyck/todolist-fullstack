@@ -1,9 +1,16 @@
 const express = require('express')
+const authController = require('./controllers/authController')
+const connection = require('./database')
 
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use(authController)
 
-app.listen(3000, () => console.log('Server is running...'))
+connection.sync()
+.then(() => {
+	app.listen(3000, () => console.log('Server is running...'))
+})
+.catch((e) => console.log(e))
