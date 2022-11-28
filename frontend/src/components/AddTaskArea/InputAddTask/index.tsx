@@ -7,7 +7,7 @@ import { Container, Input, Plus } from './styles';
 
 export const InputAddTask = () => {
     const [titleTask, setTitleTask] = useState('')
-    const { taskList, setTaskList } = useContext(AppContext)
+    const { setTaskList } = useContext(AppContext)
 
     const handleChangeTitleTask = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitleTask(e.target.value)
@@ -22,9 +22,9 @@ export const InputAddTask = () => {
             })
 
             const response = await api.get('/tasks')
-            // console.log(response.data.tasks[response.data.tasks.length - 1].id)
 
             setTaskList(response.data.tasks)
+            setTitleTask('')
         }
     }
 
@@ -34,6 +34,7 @@ export const InputAddTask = () => {
             <Input
             type='text'
             placeholder='Adidione uma tarefa'
+            value={titleTask || ''}
             onChange={handleChangeTitleTask}
             onKeyDown={handleAddTask} />
         </Container>

@@ -16,13 +16,13 @@ export const Item = ({ id, title, description, completed }: ItemProps) => {
     const { setTaskList } = useContext(AppContext)
     
     const handleDeleteTask = async (e: any) => {
-        console.log(id)
 
         await api.delete(`/task/${id}`)
 
         const response = await api.get('/tasks')
 
         setTaskList(response.data.tasks)
+        alert('Successfully deleted task!')
     }
 
     return (
