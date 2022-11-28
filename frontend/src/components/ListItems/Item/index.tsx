@@ -12,7 +12,7 @@ export const Item = ({ title, description, completed }: ItemProps) => {
         <Container>
             <Checkbox
             type='checkbox' />
-            <Title>Ler</Title>
+            <Title>{title}</Title>
             <IoMdTrash
             color='white'
             size={25}

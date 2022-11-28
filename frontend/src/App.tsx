@@ -1,9 +1,12 @@
+import { AppContextProvider } from "./contexts/AppContext";
 import { Home } from "./pages/Home";
 
 function App() {
 
   return (
-    <Home />
+    <AppContextProvider>
+      <Home />
+    </AppContextProvider>
   );
 }
 
