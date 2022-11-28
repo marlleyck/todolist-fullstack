@@ -22,6 +22,7 @@ export const InputAddTask = () => {
             })
 
             const response = await api.get('/tasks')
+            // console.log(response.data.tasks[response.data.tasks.length - 1].id)
 
             setTaskList(response.data.tasks)
         }

@@ -16,6 +16,7 @@ export const ListItems = () => {
                         { taskList?.map((task, index) => (
                             <Item
                             key={index}
+                            id={task.id}
                             title={task.title}
                             description={task.description}
                             completed={task.completed}  /> ))
