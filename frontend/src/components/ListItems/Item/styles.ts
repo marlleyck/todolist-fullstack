@@ -6,6 +6,10 @@ export const Container = styled.div`
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
+
+    border-radius: 10px;
+    padding: 10px;
 
     background-color: rgb(48, 48, 48);
 `
@@ -13,4 +17,9 @@ export const Container = styled.div`
 export const Title = styled.h2`
     font-family: sans-serif;
     color: white;
+`
+
+export const Checkbox = styled.input`
+    width: 25px;
+    height: 25px;
 `

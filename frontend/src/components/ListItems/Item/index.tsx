@@ -1,4 +1,5 @@
-import { Container, Title } from "./styles";
+import { Checkbox, Container, Title } from "./styles";
+import { IoMdTrash } from 'react-icons/io';
 
 type ItemProps = {
     title?: string;
@@ -9,7 +10,13 @@ type ItemProps = {
 export const Item = ({ title, description, completed }: ItemProps) => {
     return (
         <Container>
+            <Checkbox
+            type='checkbox' />
             <Title>Ler</Title>
+            <IoMdTrash
+            color='white'
+            size={25}
+            style={{ cursor: 'pointer' }} />
         </Container>
     );
 }
