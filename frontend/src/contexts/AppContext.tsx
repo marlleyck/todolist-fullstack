@@ -5,6 +5,7 @@ import { TaskType } from '../@types/TaskType';
 
 type AppContextType = {
     taskList: TaskType[] | undefined;
+    setTaskList: (newState: TaskType[]) => void;
     apiIsArrived: boolean;
 }
 
@@ -34,7 +35,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     }, [])
 
     return (
-        <AppContext.Provider value={{ taskList, apiIsArrived }}>
+        <AppContext.Provider value={{ taskList, setTaskList, apiIsArrived }}>
             {children}
         </AppContext.Provider>
     );
