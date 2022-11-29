@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { api } from "../../../services/api";
 
@@ -13,9 +13,12 @@ type ItemProps = {
 }
 
 export const Item = ({ id, title, description, completed }: ItemProps) => {
+    const [checkboxValue, setCheckboxValue] = useState(completed)
     const { setTaskList } = useContext(AppContext)
+
+
     
-    const handleDeleteTask = async (e: any) => {
+    const handleDeleteTask = async () => {
 
         await api.delete(`/task/${id}`)
 
@@ -25,11 +28,32 @@ export const Item = ({ id, title, description, completed }: ItemProps) => {
         alert('Successfully deleted task!')
     }
 
+    const handleStateTask = async (e: any) => {
+        setCheckboxValue(e.target.checked)        
+        
+        await api.put(`/task/${id}`, {
+            title: title,
+            description: 'teste',
+            completed: !checkboxValue
+        })
+
+        console.log(!checkboxValue)
+        // const response = await api.get('/tasks')
+        
+        // console.log(response.data.tasks)
+        alert('Updated task successfully!')
+    }
+
     return (
         <Container>
             <Checkbox
-            type='checkbox' />
+            type='checkbox'
+            // onChange={(e: any) => setCheckboxValue(e.target.checked)}
+            checked={checkboxValue}
+            onChange={handleStateTask} />
+
             <Title>{title}</Title>
+
             <IoMdTrash
             color='white'
             size={25}
