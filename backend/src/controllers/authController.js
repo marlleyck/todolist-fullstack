@@ -49,6 +49,26 @@ router.get('/task/:id', async (req, res) => {
     return res.status(200).send({ task })
 })
 
+router.put('/task/:id', async (req, res) => {
+    const { title, description, completed } = req.body
+    const { id } = req.params
+
+    if (!id) {
+        return res.status(400).send({ error: 'Id required!' })
+    }
+
+    await Task.update(
+        { title: title, description: description, completed: completed },
+        {
+            where: {
+                id: id
+            }
+        }
+    )
+
+    return res.status(200).send('Updated task successfully!')
+})
+
 router.delete('/task/:id', async (req, res) => {
     const { id } = req.params
 
