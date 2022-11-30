@@ -3,14 +3,20 @@ import { TaskType } from '../../../@types/TaskType';
 import { AppContext } from '../../../contexts/AppContext';
 import { api } from '../../../services/api';
 
-import { Container, Input, Plus } from './styles';
+import { Button, Container, Content, Input, Plus } from './styles';
 
 export const InputAddTask = () => {
     const [titleTask, setTitleTask] = useState('')
+    const [descriptionTask, setDescriptionTask] = useState('')
+
     const { setTaskList } = useContext(AppContext)
 
     const handleChangeTitleTask = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitleTask(e.target.value)
+    }
+
+    const handleChangeDescriptionTask = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setDescriptionTask(e.target.value)
     }
 
     const handleAddTask = async (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -30,13 +36,27 @@ export const InputAddTask = () => {
 
     return (
         <Container>
-            <Plus>➕</Plus>
-            <Input
-            type='text'
-            placeholder='Adidione uma tarefa'
-            value={titleTask || ''}
-            onChange={handleChangeTitleTask}
-            onKeyDown={handleAddTask} />
+            <Content>
+                <Plus>➕</Plus>
+                <Input
+                type='text'
+                placeholder='Adidione uma tarefa'
+                value={titleTask || ''}
+                onChange={handleChangeTitleTask}
+                // onKeyDown={handleAddTask}
+                 />
+            </Content>
+
+            <Content>
+                <Plus>➕</Plus>
+                <Input
+                type='text'
+                placeholder='Adicione uma descrição para sua tarefa'
+                value={descriptionTask || ''}
+                onChange={handleChangeDescriptionTask} />
+            </Content>
+
+            <Button>Adicionar</Button>
         </Container>
     );
 }
