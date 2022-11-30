@@ -19,19 +19,27 @@ export const InputAddTask = () => {
         setDescriptionTask(e.target.value)
     }
 
-    const handleAddTask = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            await api.post('/auth/register', {
-                title: titleTask,
-                description: 'teste',
-                completed: false
-            })
-
-            const response = await api.get('/tasks')
-
-            setTaskList(response.data.tasks)
-            setTitleTask('')
+    const handleAddTask = async () => {
+        try {
+            if (titleTask !== '') {
+                await api.post('/auth/register', {
+                    title: titleTask,
+                    description: descriptionTask,
+                    completed: false
+                })
+    
+                const response = await api.get('/tasks')
+    
+                setTaskList(response.data.tasks)
+                setTitleTask('')
+                setDescriptionTask('')
+            } else {
+                alert('Você não pode adicionar uma tarefa sem antes preenchê-la!')
+            }
+        } catch(e) {
+            console.log(e)
         }
+            
     }
 
     return (
@@ -56,7 +64,10 @@ export const InputAddTask = () => {
                 onChange={handleChangeDescriptionTask} />
             </Content>
 
-            <Button>Adicionar</Button>
+            <Button
+            onClick={handleAddTask}>
+                Adicionar
+            </Button>
         </Container>
     );
 }
