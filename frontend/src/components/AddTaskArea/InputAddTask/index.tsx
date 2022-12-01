@@ -51,7 +51,6 @@ export const InputAddTask = () => {
                 placeholder='Adicione uma tarefa'
                 value={titleTask || ''}
                 onChange={handleChangeTitleTask}
-                // onKeyDown={handleAddTask}
                  />
             </Content>
 
