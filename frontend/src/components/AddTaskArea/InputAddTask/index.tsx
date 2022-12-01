@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AppContext } from '../../../contexts/AppContext';
 import { api } from '../../../services/api';
 
-import { Button, Container, Content, Input, Plus } from './styles';
+import { Button, Container, Content, Input } from './styles';
 
 export const InputAddTask = () => {
     const [titleTask, setTitleTask] = useState('')
@@ -43,7 +43,6 @@ export const InputAddTask = () => {
     return (
         <Container>
             <Content>
-                <Plus>➕</Plus>
                 <Input
                 type='text'
                 placeholder='Adicione uma tarefa'
@@ -53,7 +52,6 @@ export const InputAddTask = () => {
             </Content>
 
             <Content>
-                <Plus>➕</Plus>
                 <Input
                 type='text'
                 placeholder='Adicione uma descrição para sua tarefa'

@@ -20,15 +20,9 @@ export const Content = styled.div`
     margin-bottom: 15px;
 `
 
-export const Plus = styled.div`
-    position: absolute;
-    left: 6%;
-`
-
 export const Input = styled.input`
     font-size: 1rem;
     padding: 10px;
-    padding-left: 40px;
     width: 90%;
 
     border: 1px solid gray;
