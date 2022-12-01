@@ -48,7 +48,7 @@ export const InputAddTask = () => {
                 <Plus>➕</Plus>
                 <Input
                 type='text'
-                placeholder='Adidione uma tarefa'
+                placeholder='Adicione uma tarefa'
                 value={titleTask || ''}
                 onChange={handleChangeTitleTask}
                 // onKeyDown={handleAddTask}
