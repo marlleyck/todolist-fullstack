@@ -14,6 +14,8 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: relative;
     
     margin-bottom: 15px;
 `
@@ -39,6 +41,8 @@ export const Input = styled.input`
 export const Button = styled.button`
     width: 100px;
     padding: 10px;
+    color: white;
+    font-size: 15px;
 
     border-radius: 10px;
     outline: none;
@@ -46,6 +50,7 @@ export const Button = styled.button`
     transition: .3s;
     
     cursor: pointer;
+    background-color: #9C7CD4;
 
     &:hover {
         filter: brightness(0.8);

@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { TaskType } from '../../../@types/TaskType';
 import { AppContext } from '../../../contexts/AppContext';
 import { api } from '../../../services/api';
 
@@ -39,7 +38,6 @@ export const InputAddTask = () => {
         } catch(e) {
             console.log(e)
         }
-            
     }
 
     return (
