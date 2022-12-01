@@ -33,7 +33,7 @@ export const Checkbox = styled.input`
 
 export const ContentDescription = styled.div<{show: boolean}>`
     width: 250px;
-    height: 150px;
+    min-height: 120px;
 
     display: ${props => props.show ? 'flex' : 'none'};
     align-items: center;
@@ -41,14 +41,19 @@ export const ContentDescription = styled.div<{show: boolean}>`
 
     margin-top: -10px;
     margin-bottom: 5px;
+    padding: 10px;
+
+    border-radius: 10px;
 
     z-index: 1;
 
-    border: 1px solid red;
+    background-color: #303030;
 `
 
 export const Description = styled.p`
     font-family: sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: white;
+
+    text-align: center;
 `

@@ -37,26 +37,17 @@ export const Item = ({ id, title, description, completed }: ItemProps) => {
             completed: !checkboxValue
         })
 
-        console.log(!checkboxValue)
-        // const response = await api.get('/tasks')
-        
-        // console.log(response.data.tasks)
         alert('Updated task successfully!')
     }
 
     const handleShowDescription = () => {
-        setShow(true)
-    }
-
-    const handleNotShowDescription = () => {
-        setShow(false)
+        setShow((state) => !state)
     }
 
     return (
         <>
             <Container
-            onMouseEnter={handleShowDescription}
-            onMouseLeave={handleNotShowDescription}>
+            onClick={handleShowDescription} >
                 <Checkbox
                 type='checkbox'
                 // onChange={(e: any) => setCheckboxValue(e.target.checked)}
