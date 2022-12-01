@@ -28,7 +28,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
             })
             setApiIsArrived(true)
             setTaskList(response.data.tasks)
-            console.log(response.data.tasks)
         }
 
         fetchApi()

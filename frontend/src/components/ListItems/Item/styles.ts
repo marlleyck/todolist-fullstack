@@ -21,6 +21,14 @@ export const Container = styled.div`
     cursor: pointer;
 `
 
+export const Content = styled.div`
+`
+
+export const ContentTitle = styled.div`
+    flex: 1;
+    text-align: center;
+`
+
 export const Title = styled.h2`
     font-family: sans-serif;
     color: white;

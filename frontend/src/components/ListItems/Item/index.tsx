@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { AppContext } from "../../../contexts/AppContext";
 import { api } from "../../../services/api";
 
-import { Checkbox, Container, ContentDescription, Description, Title } from "./styles";
+import { Checkbox, Container, Content, ContentDescription, ContentTitle, Description, Title } from "./styles";
 import { IoMdTrash } from 'react-icons/io';
 
 type ItemProps = {
@@ -46,19 +46,24 @@ export const Item = ({ id, title, description, completed }: ItemProps) => {
 
     return (
         <>
-            <Container
-            onClick={handleShowDescription} >
-                <Checkbox
-                type='checkbox'
-                // onChange={(e: any) => setCheckboxValue(e.target.checked)}
-                checked={checkboxValue}
-                onChange={handleStateTask} />
-                <Title>{title}</Title>
-                <IoMdTrash
-                color='white'
-                size={25}
-                style={{ cursor: 'pointer' }}
-                onClick={handleDeleteTask} />
+            <Container>
+                <Content>
+                    <Checkbox
+                    type='checkbox'
+                    checked={checkboxValue}
+                    onChange={handleStateTask} />
+                </Content>
+                <ContentTitle
+                onClick={handleShowDescription}>
+                    <Title>{title}</Title>
+                </ContentTitle>
+                <Content>
+                    <IoMdTrash
+                    color='white'
+                    size={25}
+                    style={{ cursor: 'pointer' }}
+                    onClick={handleDeleteTask} />
+                </Content>
             </Container>
 
             <ContentDescription
