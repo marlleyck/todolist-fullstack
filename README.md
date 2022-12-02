@@ -30,7 +30,7 @@
 <br />
 
 <h1 align="center">:computer: Sobre o Projeto</h1>
-<p align="center">Projeto simples de TodoList FullStack, com finalidade para estudos. Este projeto consegue cadastrar em um banco de dados (MySql): Tasks do usuário. Onde essas Tasks são enviadas a partir do Front-End (ReactJs).</p>
+<p align="center">Projeto simples de TodoList FullStack, com finalidade para estudos. Esse projeto consegue cadastrar em um banco de dados (MySql), através do backend (NodeJs & Express): Tasks do usuário. Onde essas Tasks são enviadas a partir do Front-End (ReactJs).</p>
 <br />
 
 <h1 align="center">:rocket: Executando o Projeto</h1>
