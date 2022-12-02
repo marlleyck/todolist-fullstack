@@ -48,7 +48,7 @@
 <pre><strong>$ npm install</strong></pre>
 <pre><strong>$ yarn</strong></pre>
 
-<p align="center">Crie na pasta "backend" um arquivo ".env" e coloque as informações do seu banco de dados</p>
+<p align="center">Crie na pasta "backend" um arquivo ".env" e coloque as informações do seu banco de dados seguindo o nome das variáveis que estão em "backend/src/database/index.js"</p>
 <pre><strong>$ mkdir .env</strong></pre>
 
 <br />
