@@ -1,75 +1,84 @@
-import { useContext, useState } from "react";
-import { AppContext } from "../../../contexts/AppContext";
-import { api } from "../../../services/api";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-import { Checkbox, Container, Content, ContentDescription, ContentTitle, Description, Title } from "./styles";
-import { IoMdTrash } from 'react-icons/io';
+import {
+  taskListActions,
+  deleteTask,
+  updateTaskStatus,
+} from "../../../store/ducks/taskList";
+
+import {
+  Checkbox,
+  Container,
+  Content,
+  ContentDescription,
+  ContentTitle,
+  Description,
+  Title,
+} from "./styles";
+import { IoMdTrash } from "react-icons/io";
 
 type ItemProps = {
-    id?: number;
-    title?: string;
-    description?: string;
-    completed?: boolean;
-}
+  id?: number;
+  title?: string;
+  description?: string;
+  completed?: boolean;
+};
 
 export const Item = ({ id, title, description, completed }: ItemProps) => {
-    const [checkboxValue, setCheckboxValue] = useState(completed)
-    const [show, setShow] = useState(false)
+  const [checkboxValue, setCheckboxValue] = useState(completed);
+  const [show, setShow] = useState(false);
 
-    const { setTaskList } = useContext(AppContext)
-    
-    const handleDeleteTask = async () => {
+  const dispatch = useDispatch();
 
-        await api.delete(`/task/${id}`)
+  const handleDeleteTask = async () => {
+    const deleteTaskResponse = await deleteTask(id!);
 
-        const response = await api.get('/tasks')
+    dispatch(taskListActions.setTaskList(deleteTaskResponse.tasks));
 
-        setTaskList(response.data.tasks)
-        alert('Successfully deleted task!')
-    }
+    alert("Successfully deleted task!");
+  };
 
-    const handleStateTask = async (e: any) => {
-        setCheckboxValue(e.target.checked)        
-        
-        await api.put(`/task/${id}`, {
-            title: title,
-            description: 'teste',
-            completed: !checkboxValue
-        })
+  const handleStateTask = async (e: any) => {
+    setCheckboxValue(e.target.checked);
 
-        alert('Updated task successfully!')
-    }
+    const description = "teste";
 
-    const handleShowDescription = () => {
-        setShow((state) => !state)
-    }
+    await updateTaskStatus(id!, title!, description!, checkboxValue!);
 
-    return (
-        <>
-            <Container>
-                <Content>
-                    <Checkbox
-                    type='checkbox'
-                    checked={checkboxValue}
-                    onChange={handleStateTask} />
-                </Content>
-                <ContentTitle
-                onClick={handleShowDescription}>
-                    <Title>{title}</Title>
-                </ContentTitle>
-                <Content>
-                    <IoMdTrash
-                    color='white'
-                    size={25}
-                    style={{ cursor: 'pointer' }}
-                    onClick={handleDeleteTask} />
-                </Content>
-            </Container>
+    alert("Updated task successfully!");
+  };
 
-            <ContentDescription
-            show={show}>
-                <Description>{description}</Description>
-            </ContentDescription>
-        </>
-    );
-}
+  const handleShowDescription = () => {
+    setShow((state) => !state);
+  };
+
+  return (
+    <>
+      <Container>
+        <Content>
+          <Checkbox
+            type="checkbox"
+            checked={checkboxValue}
+            onChange={handleStateTask}
+          />
+        </Content>
+        <ContentTitle onClick={handleShowDescription}>
+          <Title>{title}</Title>
+        </ContentTitle>
+        <Content>
+          <IoMdTrash
+            color="white"
+            size={25}
+            style={{ cursor: "pointer" }}
+            onClick={handleDeleteTask}
+          />
+        </Content>
+      </Container>
+
+      <ContentDescription show={show}>
+        <Description>{description}</Description>
+      </ContentDescription>
+    </>
+  );
+};

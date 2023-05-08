@@ -1,42 +1,41 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { api } from '../services/api';
+import { api } from "../services/api";
 
-import { TaskType } from '../@types/TaskType';
+import { TaskType } from "../@types/TaskType";
 
 type AppContextType = {
-    taskList: TaskType[] | undefined;
-    setTaskList: (newState: TaskType[]) => void;
-    apiIsArrived: boolean;
-}
+  taskList: TaskType[] | undefined;
+  setTaskList: (newState: TaskType[]) => void;
+  apiIsArrived: boolean;
+};
 
 type AppContextProps = {
-    children: ReactNode
-}
+  children: ReactNode;
+};
 
-export const AppContext = createContext({} as AppContextType)
+export const AppContext = createContext({} as AppContextType);
 
 export const AppContextProvider = ({ children }: AppContextProps) => {
-    const [taskList, setTaskList] = useState<TaskType[] | undefined>()
-    const [apiIsArrived, setApiIsArrived] = useState(false)
+  const [taskList, setTaskList] = useState<TaskType[] | undefined>();
+  const [apiIsArrived, setApiIsArrived] = useState(false);
 
-    useEffect(() => {
-        const fetchApi = async () => {
-            const response = await api.get('/tasks', {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            setApiIsArrived(true)
-            setTaskList(response.data.tasks)
-        }
+  useEffect(() => {
+    const fetchApi = async () => {
+      const response = await api.get("/tasks", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setApiIsArrived(true);
+      setTaskList(response.data.tasks);
+    };
 
-        fetchApi()
-    }, [])
+    fetchApi();
+  }, []);
 
-    return (
-        <AppContext.Provider value={{ taskList, setTaskList, apiIsArrived }}>
-            {children}
-        </AppContext.Provider>
-    );
-}
-
+  return (
+    <AppContext.Provider value={{ taskList, setTaskList, apiIsArrived }}>
+      {children}
+    </AppContext.Provider>
+  );
+};

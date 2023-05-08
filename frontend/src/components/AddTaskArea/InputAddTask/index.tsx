@@ -1,68 +1,62 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../../contexts/AppContext';
-import { api } from '../../../services/api';
+import React, { useState } from "react";
+import { createTask, taskListActions } from "../../../store/ducks/taskList";
+import { useDispatch } from "react-redux";
 
-import { Button, Container, Content, Input } from './styles';
+import { Button, Container, Content, Input } from "./styles";
 
 export const InputAddTask = () => {
-    const [titleTask, setTitleTask] = useState('')
-    const [descriptionTask, setDescriptionTask] = useState('')
+  const [titleTask, setTitleTask] = useState("");
+  const [descriptionTask, setDescriptionTask] = useState("");
 
-    const { setTaskList } = useContext(AppContext)
+  const dispatch = useDispatch();
 
-    const handleChangeTitleTask = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitleTask(e.target.value)
+  const handleChangeTitleTask = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitleTask(e.target.value);
+  };
+
+  const handleChangeDescriptionTask = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDescriptionTask(e.target.value);
+  };
+
+  const handleAddTask = async () => {
+    try {
+      if (titleTask !== "") {
+        const responseCreateTask = await createTask(titleTask, descriptionTask);
+        dispatch(taskListActions.setTaskList(responseCreateTask.tasks));
+
+        setTitleTask("");
+        setDescriptionTask("");
+      } else {
+        alert("Você não pode adicionar uma tarefa sem antes preenchê-la!");
+      }
+    } catch (e) {
+      console.log(e);
     }
+  };
 
-    const handleChangeDescriptionTask = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDescriptionTask(e.target.value)
-    }
+  return (
+    <Container>
+      <Content>
+        <Input
+          type="text"
+          placeholder="Adicione uma tarefa"
+          value={titleTask || ""}
+          onChange={handleChangeTitleTask}
+        />
+      </Content>
 
-    const handleAddTask = async () => {
-        try {
-            if (titleTask !== '') {
-                await api.post('/auth/register', {
-                    title: titleTask,
-                    description: descriptionTask,
-                    completed: false
-                })
-    
-                const response = await api.get('/tasks')
-    
-                setTaskList(response.data.tasks)
-                setTitleTask('')
-                setDescriptionTask('')
-            } else {
-                alert('Você não pode adicionar uma tarefa sem antes preenchê-la!')
-            }
-        } catch(e) {
-            console.log(e)
-        }
-    }
+      <Content>
+        <Input
+          type="text"
+          placeholder="Adicione uma descrição para sua tarefa"
+          value={descriptionTask || ""}
+          onChange={handleChangeDescriptionTask}
+        />
+      </Content>
 
-    return (
-        <Container>
-            <Content>
-                <Input
-                type='text'
-                placeholder='Adicione uma tarefa'
-                value={titleTask || ''}
-                onChange={handleChangeTitleTask}
-                 />
-            </Content>
-
-            <Content>
-                <Input
-                type='text'
-                placeholder='Adicione uma descrição para sua tarefa'
-                value={descriptionTask || ''}
-                onChange={handleChangeDescriptionTask} />
-            </Content>
-
-            <Button
-            onClick={handleAddTask}>
-                Adicionar
-            </Button>
-        </Container>
-    );
-}
+      <Button onClick={handleAddTask}>Adicionar</Button>
+    </Container>
+  );
+};
