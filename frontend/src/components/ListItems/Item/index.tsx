@@ -1,11 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import {
-  taskListActions,
-  deleteTask,
-  updateTaskStatus,
-} from "../../../store/ducks/taskList";
+import { AppDispatch } from "../../../store";
+import { deleteTask, updateTaskStatus } from "../../../store/fetchActions";
 
 import {
   Checkbox,
@@ -29,12 +26,10 @@ export const Item = ({ id, title, description, completed }: ItemProps) => {
   const [checkboxValue, setCheckboxValue] = useState(completed);
   const [show, setShow] = useState(false);
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteTask = async () => {
-    const deleteTaskResponse = await deleteTask(id!);
-
-    dispatch(taskListActions.setTaskList(deleteTaskResponse.tasks));
+    dispatch(deleteTask(id!));
 
     alert("Successfully deleted task!");
   };
@@ -42,9 +37,14 @@ export const Item = ({ id, title, description, completed }: ItemProps) => {
   const handleStateTask = async (e: any) => {
     setCheckboxValue(e.target.checked);
 
-    const description = "teste";
+    const taskData = {
+      id,
+      title,
+      description,
+      checkboxValue,
+    };
 
-    await updateTaskStatus(id!, title!, description!, checkboxValue!);
+    dispatch(updateTaskStatus(taskData));
 
     alert("Updated task successfully!");
   };

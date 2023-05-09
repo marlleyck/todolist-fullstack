@@ -1,35 +1,32 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-import { apiIsArrivedActions } from "../../store/ducks/apiIsArrived";
-import { fetchTaskList, taskListActions } from "../../store/ducks/taskList";
+import { fetchTasks } from "../../store/fetchActions";
 
 import { Item } from "./Item";
 
 import { Container } from "./styles";
 import { useAppSelector } from "../../store/hooks";
+import { AppDispatch } from "../../store";
 
 export const ListItems = () => {
-  const { taskList } = useAppSelector((state) => state.taskList);
+  const taskList = useAppSelector((state) => state.taskList);
 
-  const dispatch = useDispatch();
-  const apiIsArrived = useAppSelector((state) => state.apiIsArrived);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const getTaskList = async () => {
-      const taskListResponse = await fetchTaskList();
-      dispatch(taskListActions.setTaskList(taskListResponse.tasks));
-      dispatch(apiIsArrivedActions.changeValue(true));
-    };
-
-    getTaskList();
+    dispatch(fetchTasks());
   }, []);
 
   return (
     <Container>
-      {apiIsArrived.value ? (
+      {taskList.loading && <div>Loading...</div>}
+      {!taskList.loading && taskList.error ? (
+        <div>Error: {taskList.error}</div>
+      ) : null}
+      {!taskList.loading && taskList.tasks.length ? (
         <>
-          {taskList?.map((task: any, index: any) => (
+          {taskList.tasks.map((task: any, index: any) => (
             <Item
               key={index}
               id={task.id}

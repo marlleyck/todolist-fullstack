@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { createTask, taskListActions } from "../../../store/ducks/taskList";
+import { taskListActions } from "../../../store/ducks/taskList";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { createTask, fetchTasks } from "../../../store/fetchActions";
 
 import { Button, Container, Content, Input } from "./styles";
 
@@ -8,7 +10,7 @@ export const InputAddTask = () => {
   const [titleTask, setTitleTask] = useState("");
   const [descriptionTask, setDescriptionTask] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleChangeTitleTask = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitleTask(e.target.value);
@@ -23,8 +25,13 @@ export const InputAddTask = () => {
   const handleAddTask = async () => {
     try {
       if (titleTask !== "") {
-        const responseCreateTask = await createTask(titleTask, descriptionTask);
-        dispatch(taskListActions.setTaskList(responseCreateTask.tasks));
+        const task = {
+          title: titleTask,
+          description: descriptionTask,
+        };
+
+        dispatch(createTask(task));
+        dispatch(fetchTasks());
 
         setTitleTask("");
         setDescriptionTask("");
