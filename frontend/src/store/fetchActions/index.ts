@@ -17,8 +17,6 @@ export const createTask = createAsyncThunk(
       completed: false,
     });
 
-    console.log(response);
-
     return response.data.tasks;
   }
 );
