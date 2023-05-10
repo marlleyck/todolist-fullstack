@@ -1,52 +1,52 @@
-import styled from "styled-components";
+import { styled } from "../../../stitches.config";
 
-export const Container = styled.div`
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-`
+export const Container = styled("div", {
+  width: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+});
 
-export const Content = styled.div`
-    width: 100%;
+export const Content = styled("div", {
+  width: "100%",
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
 
-    position: relative;
-    
-    margin-bottom: 15px;
-`
+  position: "relative",
 
-export const Input = styled.input`
-    font-size: 1rem;
-    padding: 10px;
-    width: 90%;
+  marginBottom: 15,
+});
 
-    border: 1px solid gray;
-    border-radius: 15px;
-    color: white;
+export const Input = styled("input", {
+  fontSize: "1rem",
+  padding: 10,
+  width: "90%",
 
-    background-color: transparent;
-`
+  border: "1px solid gray",
+  borderRadius: 15,
+  color: "white",
 
-export const Button = styled.button`
-    width: 100px;
-    padding: 10px;
-    color: white;
-    font-size: 15px;
+  backgroundColor: "transparent",
+});
 
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    transition: .3s;
-    
-    cursor: pointer;
-    background-color: #9C7CD4;
+export const Button = styled("button", {
+  width: 100,
+  padding: 10,
+  color: "white",
+  fontSize: 15,
 
-    &:hover {
-        filter: brightness(0.8);
-    }
-`
+  borderRadius: 10,
+  outline: "none",
+  border: "none",
+  transition: "0.3s",
+
+  cursor: "pointer",
+  backgroundColor: "#9C7CD4",
+
+  "&:hover": {
+    filter: "brightness(0.8)",
+  },
+});

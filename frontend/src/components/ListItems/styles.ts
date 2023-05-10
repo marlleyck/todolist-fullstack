@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import { styled } from "../../stitches.config";
 
-export const Container = styled.div`
-    width: 90%;
+export const Container = styled("div", {
+  width: "90%",
 
-    margin-top: 15px;
+  marginTop: 15,
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-`
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  flexDirection: "column",
+});

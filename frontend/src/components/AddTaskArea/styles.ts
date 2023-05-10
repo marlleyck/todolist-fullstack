@@ -1,21 +1,21 @@
-import styled from "styled-components";
+import { styled } from "../../stitches.config";
 
-export const Container = styled.div`
-    width: 100%;
+export const Container = styled("div", {
+  width: "100%",
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-`
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  flexDirection: "column",
+});
 
-export const Title = styled.h1`
-    font-family: sans-serif;
-    font-size: 2.5rem;
-    text-align: center;
-    color: white;
+export const Title = styled("h1", {
+  fontFamily: "sans-serif",
+  fontSize: "2.5rem",
+  textAlign: "center",
+  color: "white",
 
-    border-bottom: 1px solid rgb(68, 68, 68);
+  borderBottom: "1px solid rgb(68, 68, 68)",
 
-    margin: 15px 0 50px 0;
-`
+  margin: "15px 0 50px 0",
+});

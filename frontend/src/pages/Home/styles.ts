@@ -1,14 +1,14 @@
-import styled from "styled-components";
+import { styled } from "../../stitches.config";
 
-export const Container = styled.div`
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
+export const Container = styled("div", {
+  width: "100%",
+  height: "100%",
+  minHeight: "100vh",
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-start",
+  flexDirection: "column",
 
-    background-color: #242424;
-`
+  backgroundColor: "#242424",
+});

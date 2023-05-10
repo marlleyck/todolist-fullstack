@@ -1,67 +1,72 @@
-import styled from "styled-components";
+import { styled } from "../../../stitches.config";
 
-export const Container = styled.div`
-    width: 100%;
-    height: 50px;
+export const Container = styled("div", {
+  width: "100%",
+  height: 50,
 
-    margin-bottom: 15px;
+  marginBottom: 15,
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
 
-    border-radius: 10px;
-    padding: 10px;
+  borderRadius: 10,
+  padding: 10,
 
-    background-color: rgb(48, 48, 48);
+  backgroundColor: "rgb(48, 48, 48)",
 
-    z-index: 0;
+  zIndex: 0,
 
-    user-select: none;
-    cursor: pointer;
-`
+  userSelect: "none",
+  cursor: "pointer",
+});
 
-export const Content = styled.div`
-`
+export const Content = styled("div", {});
 
-export const ContentTitle = styled.div`
-    flex: 1;
-    text-align: center;
-`
+export const ContentTitle = styled("div", {
+  flex: "1",
+  textAlign: "center",
+});
 
-export const Title = styled.h2`
-    font-family: sans-serif;
-    color: white;
-`
+export const Title = styled("h2", {
+  fontFamily: "sans-serif",
+  color: "white",
+});
 
-export const Checkbox = styled.input`
-    width: 25px;
-    height: 25px;
-`
+export const Checkbox = styled("input", {
+  width: 25,
+  height: 25,
+});
 
-export const ContentDescription = styled.div<{show: boolean}>`
-    width: 250px;
-    min-height: 120px;
+export const ContentDescription = styled("div", {
+  width: 250,
+  minHeight: 120,
 
-    display: ${props => props.show ? 'flex' : 'none'};
-    align-items: center;
-    justify-content: center;
+  alignItems: "center",
+  justifyContent: "center",
 
-    margin-top: -10px;
-    margin-bottom: 5px;
-    padding: 10px;
+  marginTop: "-10px",
+  marginBottom: 5,
+  padding: 10,
 
-    border-radius: 10px;
+  borderRadius: 10,
 
-    z-index: 1;
+  zIndex: 1,
 
-    background-color: #303030;
-`
+  backgroundColor: "#303030",
 
-export const Description = styled.p`
-    font-family: sans-serif;
-    font-size: 1.1rem;
-    color: white;
+  variants: {
+    show: {
+      true: { display: "flex" },
+      false: { display: "none" },
+    },
+  },
+});
 
-    text-align: center;
-`
+export const Description = styled("p", {
+  fontFamily: "sans-serif",
+  fontSize: "1.1rem",
+  color: "white",
+
+  textAlign: "center",
+});
